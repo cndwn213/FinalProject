@@ -57,9 +57,11 @@ window.addEventListener("scroll", function(){
         var recently_img_box = document.getElementsByClassName('recently_img_box')
         var keyword_profile_name_keyword = this.document.getElementById('keyword_profile_name_keyword')
         var num = String(recently_img_box.length)
+        var imgs = document.getElementsByTagName("img")
         // data = {'keyword':keyword_profile_name_keyword.innerText.slice(1), 'status':status}
         // data = {'keyword':keyword_profile_name_keyword.innerText.slice(1), 'num': num, 'status':status}
-        data = {'keyword':keyword, 'num': num, 'status':status}
+        if(status == 'original') data = {'keyword':keyword, 'num': num, 'status':status};
+        else data = {'keyword':keyword, 'num': num, "last_img_name" : imgs[imgs.length - 2].src.split("/")[5].split("?")[0], 'status':status}
         spinner.style.display = 'flex'
         $.ajax({
             type:"POST",
